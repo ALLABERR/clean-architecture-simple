@@ -2,15 +2,17 @@ package com.allaber.clean.presenation
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.allaber.clean.databinding.ActivityMainBinding
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val vm: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private lateinit var vm: MainViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Log.e("AAA", "Activity created")
-        vm = ViewModelProvider(this, MainViewModelFactory(this)).get(MainViewModel::class.java)
-
 
         vm.resultLive.observe(this) { text ->
             binding.dataTextView.text = text
