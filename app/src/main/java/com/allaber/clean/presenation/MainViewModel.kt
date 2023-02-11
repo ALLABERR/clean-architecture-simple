@@ -8,8 +8,11 @@ import com.allaber.clean.domain.models.SaveUserNameParam
 import com.allaber.clean.domain.models.UserName
 import com.allaber.clean.domain.usecase.GetUserNameUseCase
 import com.allaber.clean.domain.usecase.SaveUserNameUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val saveUserNameUseCase: SaveUserNameUseCase,
     private val getUserNameUseCase: GetUserNameUseCase
 ) : ViewModel() {
